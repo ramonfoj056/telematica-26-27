@@ -1,0 +1,18 @@
+# Maven (archivos compilados y generados)
+target/
+
+# Configuraciones de IDEs (VS Code, Eclipse, IntelliJ)
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Archivos Java compilados
+*.class
+
+# Archivos de registro y del sistema operativo
+*.log
+.DS_Store
+Thumbs.db
