@@ -2,6 +2,9 @@ package pt2027;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 
 
@@ -129,4 +132,33 @@ public class MatrizTest {
 
         new Matriz(datos);
     }
+    @Test
+public void sumarMatricesDimensionesValidas() {
+    double[][] datos1 = { { 1.0, 2.0 }, { 3.0, 4.0 } };
+    double[][] datos2 = { { 5.0, 6.0 }, { 7.0, 8.0 } };
+    Matriz m1 = new Matriz(datos1);
+    Matriz m2 = new Matriz(datos2);
+
+    Matriz res = m1.sumar(m2);
+
+    assertNotNull(res);
+    assertEquals(6.0, res.getElemento(0, 0), 1e-9);
+    assertEquals(8.0, res.getElemento(0, 1), 1e-9);
+    assertEquals(10.0, res.getElemento(1, 0), 1e-9);
+    assertEquals(12.0, res.getElemento(1, 1), 1e-9);
+}
+
+@Test
+public void sumarMatrizNullODimensionIncompatible() {
+    double[][] datos1 = { { 1.0, 2.0, 3.0 } };
+    double[][] datos2 = { { 1.0, 2.0 }, { 3.0, 4.0 } };
+    Matriz m1 = new Matriz(datos1);
+    Matriz m2 = new Matriz(datos2);
+
+    // Sumar null debe devolver null
+    assertNull(m1.sumar(null));
+    
+    // Sumar matrices de diferente dimensión debe devolver null
+    assertNull(m1.sumar(m2));
+}
 }

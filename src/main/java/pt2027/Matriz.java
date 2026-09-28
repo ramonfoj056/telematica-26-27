@@ -135,4 +135,35 @@ public class Matriz {
         System.out.println("Matriz:");
         System.out.println(matriz);
     } 
+    public Matriz sumar(Matriz otra) {
+    // 1. Comprobar que el argumento no sea null
+    if (otra == null) {
+        return null;
+    }
+    
+    // 2. Comprobar que tienen la misma dimensión
+    if (this.filas != otra.filas || this.columnas != otra.columnas) {
+        return null;
+    }
+    
+    // 3. Crear el array para almacenar el resultado de la suma
+    double[][] resultado = new double[filas][columnas];
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            resultado[i][j] = this.datos[i][j] + otra.datos[i][j];
+        }
+    }
+    
+    // 4. Devolver la nueva matriz suma
+    return new Matriz(resultado);
+}
+
+// Versión estática (recibe dos matrices como argumento)
+public static Matriz sumar(Matriz m1, Matriz m2) {
+    if (m1 == null) {
+        return null;
+    }
+    return m1.sumar(m2);
+}
+
 }
