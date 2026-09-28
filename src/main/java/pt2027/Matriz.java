@@ -165,5 +165,23 @@ public static Matriz sumar(Matriz m1, Matriz m2) {
     }
     return m1.sumar(m2);
 }
+public Matriz traspuesta() {
+    // La nueva matriz tendrá tantas filas como columnas tenía la original
+    // y tantas columnas como filas tenía la original.
+    double[][] datosTraspuesta = new double[columnas][filas];
 
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            datosTraspuesta[j][i] = this.datos[i][j];
+        }
+    }
+
+    return new Matriz(datosTraspuesta);
+}
+public static Matriz traspuesta(Matriz m) {
+    if (m == null) {
+        return null;
+    }
+    return m.traspuesta();
+}
 }

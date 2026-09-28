@@ -161,4 +161,39 @@ public void sumarMatrizNullODimensionIncompatible() {
     // Sumar matrices de diferente dimensión debe devolver null
     assertNull(m1.sumar(m2));
 }
+@Test
+public void traspuestaMatrizRectangular() {
+    double[][] datos = {
+        { 1.0, 2.0, 3.0 },
+        { 4.0, 5.0, 6.0 }
+    };
+    Matriz m = new Matriz(datos);
+    Matriz t = m.traspuesta();
+
+    assertNotNull(t);
+    // Una matriz de 2x3 pasa a ser de 3x2
+    assertArrayEquals(new int[] { 3, 2 }, t.getDimension());
+
+    // Verificación de los valores traspuestos
+    assertEquals(1.0, t.getElemento(0, 0), 1e-9);
+    assertEquals(4.0, t.getElemento(0, 1), 1e-9);
+    assertEquals(2.0, t.getElemento(1, 0), 1e-9);
+    assertEquals(5.0, t.getElemento(1, 1), 1e-9);
+    assertEquals(3.0, t.getElemento(2, 0), 1e-9);
+    assertEquals(6.0, t.getElemento(2, 1), 1e-9);
+}
+
+@Test
+public void traspuestaEstaticaMatrizValidaYNull() {
+    double[][] datos = { { 1.0, 2.0 }, { 3.0, 4.0 } };
+    Matriz m = new Matriz(datos);
+
+    // Versión estática con matriz válida
+    Matriz t = Matriz.traspuesta(m);
+    assertNotNull(t);
+    assertEquals(3.0, t.getElemento(0, 1), 1e-9);
+
+    // Versión estática con argumento null
+    assertNull(Matriz.traspuesta(null));
+}
 }
